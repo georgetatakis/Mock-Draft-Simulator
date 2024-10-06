@@ -23,5 +23,7 @@ This is the main Python script that runs the application. It handles all the cor
 templates/
 This directory contains the HTML templates that are rendered by Flask and displayed to the user. The Flask framework uses Jinja2 templating, allowing you to dynamically inject content from the Python backend into the HTML pages.
 
-## index.html: This is the homepage, where users can select their team from a dropdown list. The list of teams is dynamically populated by Flask based on data passed from the app.py.
-## draft.html: This is the draft interface where users participate in the draft. It displays the available prospects, the draft log (showing previous picks), and the form where users can sort, filter, and select players during the draft. It also allows for real-time updates based on the draft’s progression.
+## index.html
+This is the homepage, where users can select their team from a dropdown list. The list of teams is dynamically populated by Flask based on data passed from the app.py.
+## draft.html
+This is the draft interface where users participate in the draft. It displays the available prospects, the draft log (showing previous picks), and the form where users can sort, filter, and select players during the draft. It also allows for real-time updates based on the draft’s progression.
