@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFL Mock Draft Simulator</title>
+</head>
+<body>
+
+    <h1>NFL Mock Draft Simulator</h1>
+    <h2>{{ user_team }}</h2>
+    <p>Here are the draft picks so far:</p>
+    <ul>
+        <!--Displays each draft pick prior to the user pick. -->
+        {% for log in draft_pick_info %}
+            <li>{{ log }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Form for Sorting and Filtering Prospects. -->
+    <!-- Sends the form data as a POST request to the `draft` route in Flask. -->
+    <form method="POST" action="{{ url_for('draft') }}">
+        <label for="draft_choice">What would you like to do?</label>
+    <!-- The dropdown menu where users choose how to sort/filter the prospects. -->
+        <select name="draft_choice" id="draft_choice" required>
+            <option value="1">Sort prospects by position</option>
+            <option value="2">Sort by prospect rating</option>
+            <option value="3">Sort by team rating</option>
+            <option value="4">Get advice on who to select</option>
+        <!-- Sends whichever sort or filter the user selects to the server. -->
+        </select>
+        <br>
+        <!--Dropdown for selecting a position if sorting by position. -->
+        <label for="position_sort">Position (if sorting by position):</label>
+        <select name="position_sort" id="position_sort">
+            <!-- Dropdown menu for selecting a specific position. -->
+            <option value="" disabled selected>Select a position</option>
+            {% for position in positions %}
+                <option value="{{ position }}">{{ position }}</option>
+            {% endfor %}
+        </select>
+        <br>
+         <!-- Button to submit the sorting/filtering choice. -->
+        <button type="submit" name="submit_filter">Submit</button>
+    </form>
+
+    <br>
+
+    <!-- Form for Player Selection. -->
+    <form method="POST" action="{{ url_for('draft') }}">
+        <label for="select_player">Select a Player:</label>
+        <select name="select_player" id="select_player" required>
+            {% for prospect in prospects %}
+            <!-- Displays each prospect's attributes. -->
+                <option value="{{ prospect.name }}">
+                    {{ prospect.name }} - Height: {{ prospect.height }} ft, Weight: {{ prospect.weight }} lbs, 
+                    Position: {{ prospect.position }}, Team Rating: {{ prospect.team_rating }}, 
+                    Prospect Rating: {{ prospect.rating }}
+                </option>
+            {% endfor %}
+        </select>
+        <br>
+        <!-- Button to submit the selected player choice. -->
+        <button type="submit" name="submit_player">Submit</button>
+    </form>
+
+</body>
+</html>
